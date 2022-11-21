@@ -1,3 +1,4 @@
+def minimumSwaps(arr):
     swaps = 0
     for currIndex in range(len(arr)):
         print('current index: ', currIndex)
