@@ -1,0 +1,9 @@
+def rotLeft(a, d):
+    # Write your code here
+    total = len(a)
+    rightShift = total - d
+    newArr = [0] * total
+    for index in range(total):
+        newIndex = (index + rightShift) % total
+        newArr[newIndex] = a[index]
+    return newArr
