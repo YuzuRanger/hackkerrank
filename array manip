@@ -1,0 +1,23 @@
+def arrayManipulation(n, queries):
+    # not optimized, times out
+    arr = [0] * n
+    maxVal = 0
+    for item in range(len(queries)):
+        # print("Query content: ", queries[item])
+        startIndex = queries[item][0]
+        endIndex = queries[item][1]
+        increment = queries[item][2]
+        
+        # print("startIndex: ", startIndex)
+        # print("endIndex: ", endIndex)
+        # print("increment: ", increment)
+        
+        for index in range(startIndex - 1, endIndex):
+            arr[index] += increment
+            maxVal = max(maxVal, arr[index])
+            # print("index: ", index, " array: \n", arr)
+        # print("")
+        
+    # print("final array: \n", arr)
+
+    return maxVal
