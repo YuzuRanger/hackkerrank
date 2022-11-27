@@ -21,3 +21,38 @@ def arrayManipulation(n, queries):
     # print("final array: \n", arr)
 
     return maxVal
+
+# tricky optimized version
+def arrayManipulation(n, queries):
+    # from: https://www.hackerrank.com/challenges/crush/forum/comments/1203929?isFullScreen=true&h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=arrays
+    # A,B,K mean A through B have all the same values (an increase of K). 
+    # Therefore you do not need to loop to update through every single value. 
+    # Instead you can use 1 loop to update the specific values A and B (adjusted for 1-index)
+    # A is an increase as once you start that range of indices you gain K.
+    # B is a decrease as after you leave that range of indices you lose K in the indices after. 
+    arr = [0] * (n + 1)
+    maxVal = 0
+    currSum = 0
+    for item in queries:
+        # A, B, K respectively
+        startIndex, endIndex, increment = item
+        
+        # print("startIndex: ", startIndex)
+        # print("endIndex: ", endIndex)
+        # print("increment: ", increment)
+        
+        arr[startIndex - 1] += increment
+        arr[endIndex] -= increment
+        
+        # print("item: ", item, " array: \n", arr)
+    
+    # Then a separate loop (not nested) to do a running sum to find the max value.
+    for val in arr:
+            currSum += val
+            # maxVal = max(maxVal, val)
+            if currSum > maxVal:
+                maxVal = currSum
+            # print("new max val: ", maxVal)
+            
+    return maxVal
+    
